@@ -5,15 +5,25 @@ import css from "./FeedbackOptions.module.css";
 class FeedbackOptions extends Component {
   render() {
     const { options } = this.props;
-    console.log(options);
+    const keyObject = Object.keys(options);
     return (
       <div className={css.wrapperButtons}>
-        <button type="submit">Good</button>
-        <button type="submit">Neutral</button>
-        <button type="submit">Bad</button>
+        {keyObject.map((button, key) => (
+          <button key={key} type="submit">
+            {button}
+          </button>
+        ))}
       </div>
     );
   }
 }
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }),
+};
 
 export default FeedbackOptions;

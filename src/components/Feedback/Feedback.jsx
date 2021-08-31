@@ -3,6 +3,7 @@ import { Component } from "react";
 import css from "./Feedback.module.css";
 import Statistics from "../Statistics/Statistics";
 import FeedbackOptions from "../FeedbackOptions/FeedbackOptions";
+import Section from "../Section/Section";
 
 class Feedback extends Component {
   render() {
@@ -11,23 +12,19 @@ class Feedback extends Component {
     const { good, neutral, bad } = state;
     return (
       <header className={css.feedback}>
-        <h1 className={css.titleFeedback}>Please leave feedback</h1>
-        <FeedbackOptions options={state} />
-        {/* <div className={css.wrapperButtons}>
-          <button type="submit">Good</button>
-          <button type="submit">Neutral</button>
-          <button type="submit">Bad</button>
-        </div> */}
+        <Section title="Please leave feedback">
+          <FeedbackOptions options={state} />
+        </Section>
 
-        <h2 className={css.titleStatistics}>Statistics</h2>
-
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={countTotalFeedback(state)}
-          positivePercentage={countPositiveFeedbackPercentage(state)}
-        />
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={countTotalFeedback(state)}
+            positivePercentage={countPositiveFeedbackPercentage(state)}
+          />
+        </Section>
       </header>
     );
   }
