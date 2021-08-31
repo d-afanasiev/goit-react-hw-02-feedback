@@ -4,13 +4,17 @@ import css from "./FeedbackOptions.module.css";
 
 class FeedbackOptions extends Component {
   render() {
-    const { options } = this.props;
+    const { options, onLeaveFeedback } = this.props;
     const keyObject = Object.keys(options);
     return (
       <div className={css.wrapperButtons}>
-        {keyObject.map((button, key) => (
-          <button key={key} type="submit">
-            {button}
+        {keyObject.map((nameButton, key) => (
+          <button
+            key={key}
+            type="submit"
+            onClick={() => onLeaveFeedback(nameButton)}
+          >
+            {nameButton}
           </button>
         ))}
       </div>

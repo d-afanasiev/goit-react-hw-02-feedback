@@ -4,9 +4,9 @@ import Feedback from "./components/Feedback/Feedback";
 
 class App extends Component {
   state = {
-    good: 2,
-    neutral: 5,
-    bad: 2,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
   countTotalFeedback = (feedbacks) => {
@@ -26,6 +26,12 @@ class App extends Component {
     return Math.round((goodFeedback / totalFeedback) * 100);
   };
 
+  onLeaveFeedback = (value) => {
+    this.setState((prevState) => ({
+      [value]: prevState[value] + 1,
+    }));
+  };
+
   render() {
     return (
       <div className="App">
@@ -33,6 +39,7 @@ class App extends Component {
           state={this.state}
           countTotalFeedback={this.countTotalFeedback}
           countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
+          onLeaveFeedback={this.onLeaveFeedback}
         />
       </div>
     );
